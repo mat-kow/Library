@@ -2,30 +2,41 @@ package pl.teo.lib.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pl.teo.lib.entities.Author;
 import pl.teo.lib.entities.Book;
-import pl.teo.lib.entities.Category;
-import pl.teo.lib.repository.BookRepo;
+import pl.teo.lib.service.BookService;
 
 @RestController
+@RequestMapping("/api/book")
 public class BookController {
-    private final BookRepo bookRepo;
+    private final BookService bookService;
 
-//    @Autowired
-    public BookController(BookRepo bookRepo) {
-        this.bookRepo = bookRepo;
+    @Autowired
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
+    }
+    @GetMapping("/{id}")
+    public Book getBook(@PathVariable Long id) {
+        return bookService.getById(id);
     }
 
-//    @GetMapping("book")
-//    public String addBook() {
-//        Book book = new Book();
-//        Author author = new Author();
-//        author.setFirstName("George");
-//        author.setLastName("Martin");
-//        Category category = new Category();
-//        category.setName("fantasy");
-//        book.
-//        bookRepo.save(book);
-//        return book.getId().toString();
-//    }
+    @DeleteMapping("/{id}")
+    public void deleteBook(@PathVariable Long id) {
+        bookService.deleteById(id);
+    }
+
+    @PostMapping()
+    public Book addBook(@RequestBody Book book) {
+        return bookService.save(book);
+    }
+
+    @PutMapping("/{id}")
+    public boolean editBook(@PathVariable Long id, @RequestBody Book book) {
+        if (id.equals(book.getId())) {
+            bookService.save(book);
+            return true;
+        }
+        return false;
+    }
+
+
 }
