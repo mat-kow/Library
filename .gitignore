@@ -152,3 +152,14 @@ HELP.md
 *.iml
 *.cmd
 mvnw
+
+
+# # Angular
+dist/
+tmp/
+app/**/*.js
+app/**/*.js.map
+
+# dependencies
+node_modules/
+bower_components/

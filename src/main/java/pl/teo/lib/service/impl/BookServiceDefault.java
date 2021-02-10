@@ -7,6 +7,8 @@ import pl.teo.lib.exception.ResourceNotFoundException;
 import pl.teo.lib.repository.BookRepo;
 import pl.teo.lib.service.BookService;
 
+import java.util.List;
+
 @Service
 public class BookServiceDefault implements BookService {
     private final BookRepo bookRepo;
@@ -29,5 +31,10 @@ public class BookServiceDefault implements BookService {
     @Override
     public Book save(Book book) {
         return bookRepo.save(book);
+    }
+
+    @Override
+    public List<Book> getAll() {
+        return bookRepo.findAll();
     }
 }

@@ -7,6 +7,7 @@ import pl.teo.lib.service.AuthorService;
 
 @RestController
 @RequestMapping("/api/author")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthorController {
     private final AuthorService authorService;
 

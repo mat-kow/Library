@@ -7,6 +7,7 @@ import pl.teo.lib.service.CategoryService;
 
 @RestController
 @RequestMapping("/api/category")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CategoryController {
     private final CategoryService categoryService;
 

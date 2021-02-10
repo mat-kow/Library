@@ -5,8 +5,11 @@ import org.springframework.web.bind.annotation.*;
 import pl.teo.lib.entities.Book;
 import pl.teo.lib.service.BookService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/book")
+@CrossOrigin(origins = "http://localhost:4200")
 public class BookController {
     private final BookService bookService;
 
@@ -36,6 +39,11 @@ public class BookController {
             return true;
         }
         return false;
+    }
+
+    @GetMapping()
+    public List<Book> getAll() {
+        return bookService.getAll();
     }
 
 
