@@ -7,6 +7,8 @@ import pl.teo.lib.exception.ResourceNotFoundException;
 import pl.teo.lib.repository.CategoryRepo;
 import pl.teo.lib.service.CategoryService;
 
+import java.util.List;
+
 @Service
 public class CategoryServiceDefault implements CategoryService {
     private final CategoryRepo categoryRepo;
@@ -29,5 +31,10 @@ public class CategoryServiceDefault implements CategoryService {
     @Override
     public Category save(Category category) {
         return categoryRepo.save(category);
+    }
+
+    @Override
+    public List<Category> getAll() {
+        return categoryRepo.findAll();
     }
 }

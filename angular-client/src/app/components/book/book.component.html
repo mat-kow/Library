@@ -1,1 +1,11 @@
+<h4>Książka: </h4>
 <p>Tytuł: {{book.title}}</p>
+<p>Autorzy:</p>
+<ul>
+  <li *ngFor="let author of book.authors">{{author.firstName}} {{author.lastName}}</li>
+</ul>
+<p>Kategoria: {{book.category.name}}</p>
+<button (click)="delete()">Usuń</button>
+<button (click)="showEdit()">Edytuj</button>
+<button (click)="goBack()">Wróć</button>
+<app-book-form [hidden]="!showingEdit" [model]="book"></app-book-form>

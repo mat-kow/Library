@@ -1,0 +1,7 @@
+<h4>Kategoria</h4>
+<p>Nazwa: {{category.name}}</p>
+<button (click)="delete()">Usuń</button>
+<button (click)="showEdit()">Edytuj</button>
+<button (click)="goBack()">Wróć</button>
+<app-category-form [hidden]="!showingEdit" [model]="category"></app-category-form>
+

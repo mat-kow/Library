@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.teo.lib.entities.Category;
 import pl.teo.lib.service.CategoryService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/category")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -38,6 +40,11 @@ public class CategoryController {
             return true;
         }
         return false;
+    }
+
+    @GetMapping()
+    public List<Category> getAll() {
+        return categoryService.getAll();
     }
 
 }

@@ -1,1 +1,7 @@
-<p>author works!</p>
+<h4>Pisarz</h4>
+<p>Imię: {{author.firstName}}</p>
+<p>Nazwisko: {{author.lastName}}</p>
+<button (click)="delete()">Usuń</button>
+<button (click)="showEdit()">Edytuj</button>
+<button (click)="goBack()">Wróć</button>
+<app-author-form [hidden]="!showingEdit" [model]="author"></app-author-form>

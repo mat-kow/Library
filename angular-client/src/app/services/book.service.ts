@@ -1,40 +1,34 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Book} from '../model/Book';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
-  private apiUrl = 'http://localhost:8081/api/book/';
+  private apiUrl = 'http://localhost:8081/api/book';
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  getAllBooks(): Observable<Book[]> {
-    console.log(this.apiUrl);
+  getAll(): Observable<Book[]> {
     return this.http.get<Book[]>(this.apiUrl);
   }
-  getBook(id: number): Observable<Book> {
+
+  get(id: number): Observable<Book> {
     return this.http.get<Book>(`${this.apiUrl}/${id}`);
   }
-}
 
-export interface Author {
-  id: number;
-  firstName: string;
-  lastName: string;
-}
+  save(book: Book): Observable<Book> {
+    return this.http.post<Book>(this.apiUrl, book);
+  }
 
-export interface Category {
-  id: number;
-  name: string;
+  delete(id: number): Observable<Book> {
+    return this.http.delete<Book>(`${this.apiUrl}/${id}`);
+  }
+  edit(book: Book, id: number): Observable<boolean> {
+    return this.http.put<boolean>(`${this.apiUrl}/${id}`, book);
+  }
 }
-
-export interface Book {
-  id: number;
-  title: string;
-  authors: Author[];
-  category: Category;
-}
-
 

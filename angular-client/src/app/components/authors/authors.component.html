@@ -1,0 +1,7 @@
+<app-author-form [authors]="authors"></app-author-form>
+<h3>Pisarze</h3>
+<ul>
+  <li *ngFor="let author of authors">
+    <a routerLink="/author/{{author.id}}">{{author.firstName}} {{author.lastName}}</a>
+  </li>
+</ul>

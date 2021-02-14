@@ -7,6 +7,8 @@ import pl.teo.lib.exception.ResourceNotFoundException;
 import pl.teo.lib.repository.AuthorRepo;
 import pl.teo.lib.service.AuthorService;
 
+import java.util.List;
+
 @Service
 public class AuthorServiceDefault implements AuthorService {
     private final AuthorRepo authorRepo;
@@ -19,6 +21,11 @@ public class AuthorServiceDefault implements AuthorService {
     @Override
     public Author save(Author author) {
         return authorRepo.save(author);
+    }
+
+    @Override
+    public List<Author> getAll() {
+        return authorRepo.findAll();
     }
 
     @Override

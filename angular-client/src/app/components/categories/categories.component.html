@@ -1,0 +1,6 @@
+<app-category-form [categories]="categories"></app-category-form>
+<h3>Kategorie</h3>
+
+<ul>
+  <li *ngFor="let category of categories"><a routerLink="/category/{{category.id}}">{{category.name}}</a></li>
+</ul>

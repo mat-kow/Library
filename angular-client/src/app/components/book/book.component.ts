@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Book, BookService} from '../../services/book.service';
+import {BookService} from '../../services/book.service';
 import {ActivatedRoute} from '@angular/router';
+import {Book} from '../../model/Book';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-book',
@@ -10,9 +12,11 @@ import {ActivatedRoute} from '@angular/router';
 export class BookComponent implements OnInit {
   book: Book;
   books: Book[] = [];
+  showingEdit = false;
 
   constructor(private bookService: BookService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private location: Location) { }
 
   ngOnInit(): void {
     this.getBook();
@@ -20,7 +24,16 @@ export class BookComponent implements OnInit {
 
   getBook(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.bookService.getBook(id).subscribe(book => this.book = book);
+    this.bookService.get(id).subscribe(book => this.book = book);
   }
 
+  delete(): void {
+    this.bookService.delete(this.book.id).subscribe(_ => this.goBack());
+  }
+  showEdit(): void {
+    this.showingEdit = true;
+  }
+  goBack(): void {
+    this.location.back();
+  }
 }

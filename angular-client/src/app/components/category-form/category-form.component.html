@@ -1,0 +1,12 @@
+<div class="container">
+  <form #categoryForm="ngForm" (ngSubmit)="submit(); categoryForm.reset()">
+    <h3>Dodaj nową kategorię</h3>
+    <div class="form-group">
+      <label for="name">Nazwa</label>
+      <input type="text" class="form-control" id="name" required
+             name="name" [(ngModel)]="model.name" #name=ngModel>
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Musisz podać nazwę</div>
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="!categoryForm.form.valid">Zapisz</button>
+  </form>
+</div>
