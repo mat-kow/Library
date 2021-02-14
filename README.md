@@ -1,2 +1,2 @@
 # Library
-Very simple REST API
+Very simple REST API with Angular frontend
